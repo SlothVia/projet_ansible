@@ -26,3 +26,12 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html
 https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html
 
 
+# Module debug et verbosity 
+$ ansible-playbook demol_loop_playbook.yaml -vv
+
+# Les facts
+Un task automatique au lancement d'un playbook : TASK [GATHERING FACTS]
+Un module : setup
+$ ansible -m ansible.builtin.setup client -a "filter='user'"
+$ ansible -m ansible.builtin.setup centos01 -a "filter='user'"
+

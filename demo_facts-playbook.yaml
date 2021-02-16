@@ -1,0 +1,10 @@
+---
+- name: PLAY - demo facts
+  hosts: linux
+  
+  tasks:
+  
+  # Utilisation de facrs recoltes par la task automatique gathering_facts
+  - name: Utilisation d'un fact
+    debug:
+      msg: "Serveur sur distri: {{ ansible_distribution }}"
