@@ -1,2 +1,11 @@
 # Lancement du premier playbook 
-# ansible-playbook -i hosts -u vianney premier_playbook.yaml
+$ ansible-playbook -i hosts -u vianney premier_playbook.yaml
+$ ansible-playbook -i hosts -u vianney premier_playbook.yaml --limit client
+
+# Arguments supplémentaires au lancement du playbook
+$ ansible-playbook premier_playbook.yaml --check
+$ ansible-playbook premier_playbook.yaml --list-tasks
+$ ansible-playbook premier_playbook.yaml --limit client
+
+#Installation du linter ansible dans le virtualenv
+pip install ansible-lint
