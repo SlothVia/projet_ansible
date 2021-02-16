@@ -8,13 +8,18 @@
       testuser1:
         state: present
         shell: /bin/bash
+        comment: "User Test1"
       testuser2:
         state: present
-        shell: /sbin/nologin    
+        shell: /sbin/nologin
+      pierre:
+        state: present
+      gege:
+              
   
   tasks: 
     - name: Creation d'un user standard avec groupe sudo, wheel
-      user:
+      ansible.builtin.user:
         name: formation
         state: present
         shell: /bin/bash
@@ -23,8 +28,9 @@
     - name: Creation d'utilisateurs standards
       ansible.builtin.user: 
         name: "{{ item.key }}"
-        state: "{{ item.value.state }}"
-        shell: "{{ item.value.shell }}"
+        state: "{{ item.value.state | default('absent') }}"
+        shell: "{{ item.value.shell | default('/bin/bash') }}"
+        comment: "{{ item.value.comment | default(omit) }}"
         password: "{{ lookup ('password', 'credentials' 
           + '/' + inventory_hostname + '/'
           + item.key 
