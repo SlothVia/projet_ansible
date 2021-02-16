@@ -16,3 +16,9 @@ $ ansible-inventory -i hosts --graph
 
 # Lancement de bootstrap-playbook
 $ ansible-playbook bootstrap-playbook.yaml
+
+# Boucles loop
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html
+
+# Variables spéciales :
+https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html
