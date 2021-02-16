@@ -35,3 +35,7 @@ Un module : setup
 $ ansible -m ansible.builtin.setup client -a "filter='user'"
 $ ansible -m ansible.builtin.setup centos01 -a "filter='user'"
 
+# Conditionnals : 
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
+
