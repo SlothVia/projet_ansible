@@ -1,0 +1,2 @@
+# Lancement du premier playbook 
+# ansible-playbook -i hosts -u vianney premier_playbook.yaml
