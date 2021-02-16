@@ -10,3 +10,13 @@
         state: present
         shell: /bin/bash
         groups: "{{ sudogrp }}"
+        
+    - name: Creation d'utilisateurs standards
+      ansible.builtin.user: 
+        name: "{{ item }}"
+        state: present
+        shell: /bin/bash
+      loop:
+        - testuser1
+        - testuser2
+        
