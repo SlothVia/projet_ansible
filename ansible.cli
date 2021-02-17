@@ -1,41 +1,47 @@
-# Lancement du premier playbook 
-$ ansible-playbook -i hosts -u vianney premier_playbook.yaml
-$ ansible-playbook -i hosts -u vianney premier_playbook.yaml --limit client
+# Lancement du premier playbook
+$ ansible-playbook -i hosts -u vagrant premier_playbook.yaml
+$ ansible-playbook -i hosts -u vagrant premier_playbook.yaml --limit srv01
+
 
 # Arguments supplémentaires au lancement du playbook
 $ ansible-playbook premier_playbook.yaml --check
+$ ansible-playbook premier_playbook.yaml --syntax-check
 $ ansible-playbook premier_playbook.yaml --list-tasks
-$ ansible-playbook premier_playbook.yaml --limit client
+$ ansible-playbook premier_playbook.yaml --limit srv01
 
 # Installation du linter ansible dans le virtualenv
-pip install ansible-lint
+pip uninstall ansible-lint
 pip install ansible-lint==4.3.7
-# ansible-lint bootstrap-playbook.yaml
+$ ansible-lint bootstrap-playbook.yaml
 
 # Gestion de l'inventaire
 $ ansible-inventory -i hosts --list -y
 $ ansible-inventory -i hosts --graph
 
-# Lancement de bootstrap-playbook
+# Lancement du second playbook bootstrap
 $ ansible-playbook bootstrap-playbook.yaml
 
-# Boucles loop
+
+# Boucle - loops
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html
+
 
 # Variables spéciales :
 https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html
 
 
-# Module debug et verbosity 
-$ ansible-playbook demol_loop_playbook.yaml -vv
+# Module debug et verbosity
+$ ansible-playbook demo_loop-playbook.yaml -vv
 
 # Les facts
-Un task automatique au lancement d'un playbook : TASK [GATHERING FACTS]
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html
+Un task automatique au lancement d'un playbool : TASK [Gathering Facts] 
 Un module : setup
-$ ansible -m ansible.builtin.setup client -a "filter='user'"
-$ ansible -m ansible.builtin.setup centos01 -a "filter='user'"
+$ ansible -m ansible.builtin.setup srv01
+$ ansible -m ansible.builtin.setup srv01 -a "filter=*user*"
 
-# Conditionnals : 
+
+# Conditionnals :
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 
@@ -49,16 +55,24 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_prompts.html
 https://docs.ansible.com/ansible/latest/user_guide/vault.html
 https://docs.ansible.com/ansible/2.7/plugins/lookup/hashi_vault.html
 
-  4.1°) Encryption de la valeur ( avec saisi d'un mdp vault)
-    $ ansible-vault encrypt_string -n deploy_pwd "deploy123"
-  4.2°) Copie du résultat dans le playbook
-  4.3°)Déclenchement du playbook avec demande de saisie de mdp vault
-    $ ansible-playbbok premier-playbook.yaml --ask-vault-pass
+    4.1°) Encryption de la valeur (avec saisie d'un mot de passe vault)
+            $ ansible-vault encrypt_string -n deploy_pwd "deploy123"
+    4.2°) Copie du résultat dans le playbook
+    4.3°) Declenchement du playbook avec demande de saisie du mot de passe vault
+            $ ansible-playbook premier_playbook.yaml --ask-vault-pass
+
 $ ansible-vault decrypt vars-bootstrap.yaml
+
 $ ansible-vault encrypt vars-bootstrap.yaml
 
 $ ansible-vault edit vars-bootstrap.yaml
 
+
 ## TP1 lance du playbook :
 $ ansible-playbook TPs/tp1-web-playbook.yaml
 $ ansible-playbook TPs/tp1-web-playbook.yaml -e appli_enable=absent
+
+
+## Ansible Handlers : declenchement d'une action suite à un changement
+=> install => config => restart
+Combo : notify => handlers
