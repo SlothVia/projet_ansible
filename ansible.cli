@@ -49,4 +49,12 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_prompts.html
 https://docs.ansible.com/ansible/latest/user_guide/vault.html
 https://docs.ansible.com/ansible/2.7/plugins/lookup/hashi_vault.html
 
-$ ansible-vault encrypt_string -n deploy_pwd "deploy123"
+  4.1°) Encryption de la valeur ( avec saisi d'un mdp vault)
+    $ ansible-vault encrypt_string -n deploy_pwd "deploy123"
+  4.2°) Copie du résultat dans le playbook
+  4.3°)Déclenchement du playbook avec demande de saisie de mdp vault
+    $ ansible-playbbok premier-playbook.yaml --ask-vault-pass
+$ ansible-vault decrypt vars-bootstrap.yaml
+$ ansible-vault encrypt vars-bootstrap.yaml
+
+$ ansible-vault edit vars-bootstrap.yaml
