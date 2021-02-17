@@ -5,6 +5,9 @@ debian
 [centos]
 centos01 ansible_ssh_host=192.168.0.15
 
+[web]
+client
+
 [debian]
 client ansible_ssh_host=192.168.0.17
 
