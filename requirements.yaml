@@ -1,0 +1,11 @@
+---
+## GITHUB PERSO
+
+- src: 'git@github.com:psable/require-deploy.git'
+  scm: git
+  name: 'require-deploy_0.0.1'
+
+- src: 'git@gitlab.com:poec_cloud/formation_ansible/roles/apache.git'
+  scm: git
+  version: '0.0.1'
+  name: 'apache_0.0.1'
