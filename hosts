@@ -1,15 +1,17 @@
+manager ansible_connection=local
+
 [linux:children]
-centos
 debian
-
-[centos]
-centos01 ansible_ssh_host=192.168.0.15
-
-[web]
-client
+centos
 
 [debian]
-client ansible_ssh_host=192.168.0.17
+srv01  ansible_ssh_host=172.28.128.8
+
+[web]
+srv01
+
+[centos]
+srv02  ansible_ssh_host=172.28.128.9
 
 [debian:vars]
 sudogrp=sudo
