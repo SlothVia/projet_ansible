@@ -1,7 +1,7 @@
 ---
 ## GITHUB PERSO
-
-- src: 'git@github.com:psable/require-deploy.git'
+  # !! Donner le lien du git crée pour le deploy" !!
+- src: 'git@github.com:'
   scm: git
   name: 'require-deploy_0.0.1'
 
